@@ -16,14 +16,12 @@ only after its checks pass and it is merged into the protected `main` branch.
 
 ```mermaid
 flowchart LR
-    A[Feature branch] --> B[Pull request]
-    B --> C[Lint, test, build]
-    B --> D[CodeQL]
-    B -->|/deploy| E[Preview environment]
-    E --> F[Preview URL]
-    B -->|approved and merged| G[Protected main]
-    G --> H[Production deployment]
-    B -->|closed| I[Preview cleanup]
+    FEATURE["⭐ Feature Branch"] --> PR["🤓 Pull Request"]
+    PR -->|"/deploy comment on PR"| DEPLOY["🚀 Deploy Branch"]
+    PR --> CHECKS["🧪 Test<br/>🛡️ CodeQL"]
+    CHECKS -->|"OK? Merge"| MAIN["🔒 Main"]
+    DEPLOY --> ENVIRONMENT["PR Environment URL<br/>my-app-pr-23.example.com"]
+    ENVIRONMENT --> CLEANUP["Destroy environment when PR is merged or closed"]
 ```
 
 ## Planned capabilities
